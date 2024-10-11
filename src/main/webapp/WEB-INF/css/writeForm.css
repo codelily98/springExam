@@ -1,0 +1,92 @@
+@charset "UTF-8";
+#imgWrap {
+    display: flex;
+    justify-content: center;
+    align-items: bottom;
+    margin: 50px auto;
+}
+form {
+    width: 350px;
+    margin: 50px auto;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+div label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px 10px;
+    outline: none;
+    border-style: none;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:hover, input[type="password"]:hover {
+    border-color: #888;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #5a9;
+    outline: none;
+    box-shadow: 0 8px 8px -4px rgba(90, 153, 90, 0.5);
+}
+
+#idWrap, #nameWrap, #pwdWrap {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: #555;
+}
+
+#btnwrap {
+    display: flex;
+    flex-wrap: wrap;  /* 한 줄에 공간이 부족하면 다음 줄로 넘기기 */
+    justify-content: space-between;  /* 버튼들 사이의 간격을 균등하게 */
+    gap: 10px;  /* 버튼 간의 간격 설정 */
+    margin-top: 20px;  /* 상단 여백 */
+}
+
+#btnwrap input[type="button"],
+#btnwrap input[type="reset"] {
+    width: calc(50% - 5px);  /* 버튼이 두 개씩 배치되도록 크기 설정 */
+    padding: 10px;
+    background-color: #4CAF50;  /* 버튼 배경색 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#btnwrap input[type="reset"], #resetBtn {
+	background-color: #E80000;  /* 버튼 배경색 */
+}
+
+#btnwrap input[type="button"]:hover {
+    background-color: #45a049;  /* 호버 시 버튼 배경색 변경 */
+}
+
+#btnwrap input[type="reset"]:hover, #resetBtn:hover {
+	background-color: #C10000;  /* 버튼 배경색 */
+}
+
+
+#idDiv, #pwdDiv, #nameDiv {
+	color:red;
+	font-weight: bold;
+	font-size:9pt;
+}

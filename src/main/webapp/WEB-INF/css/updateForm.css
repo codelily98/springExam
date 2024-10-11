@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+/* 전체 레이아웃 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8; /* 부드러운 배경색 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+}
+
+#imgWrap {
+    margin-bottom: 20px; /* 이미지와 폼 간의 여백 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+#wrap {
+    background-color: #fff; /* 폼 배경색 */
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 400px; /* 폼 너비 */
+    text-align: center;
+}
+
+/* 제목 스타일 */
+h2 {
+    margin-bottom: 20px;
+    color: #333; /* 제목 색상 */
+}
+
+/* 레이블 스타일 */
+label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333; /* 레이블 색상 */
+}
+
+/* 버튼 래퍼 스타일 */
+#btnWrap {
+    margin-top: 15px; /* 위쪽 여백 추가 */
+}
+
+/* 버튼 그룹 스타일 */
+#btn, #btn2 {
+    display: flex; /* Flexbox 활성화 */
+    justify-content: space-between; /* 버튼 간격 조절 */
+    margin-top: 15px;
+}
+
+/* 입력 필드 스타일 */
+input[type="text"] {
+    font-size: 16px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    outline: none;
+    border-style: none;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 버튼 스타일 */
+input[type="button"], input[type="reset"] {
+    flex: 1; /* Flex-grow 설정 */
+    padding: 10px;
+    margin: 0 5px; /* 버튼 간의 간격 조정 */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff; /* 글자 색상 */
+}
+
+/* 각 버튼 색상 설정 */
+#listBtn, #writeBtn {
+    background-color: #28a745; /* 초록색 버튼 */
+}
+
+#listBtn:hover, #writeBtn:hover {
+    background-color: #218838; /* 초록색 버튼 호버 색상 */
+}
+
+#deleteBtn {
+    background-color: #dc3545; /* 빨간색 삭제 버튼 */
+}
+
+#deleteBtn:hover {
+    background-color: #c82333; /* 빨간색 삭제 버튼 호버 색상 */
+}
+
+input[type="reset"] {
+    background-color: #dc3545; /* 빨간색 리셋 버튼 */
+}
+
+input[type="reset"]:hover {
+    background-color: #c82333; /* 빨간색 리셋 버튼 호버 색상 */
+}
+
+/* 에러 메시지 스타일 */
+#nameDiv, #pwdDiv {
+    color: red; /* 에러 메시지 색상 */
+    font-size: 12px;
+    text-align: left;
+}
+
+/* 반응형 처리 */
+@media (max-width: 600px) {
+    #wrap {
+        width: 90%; /* 모바일 화면에서 폼 너비 조정 */
+        padding: 15px;
+    }
+
+    input[type="button"], input[type="reset"] {
+        margin: 5px 0; /* 버튼 간의 간격 조정 */
+    }
+}

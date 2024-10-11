@@ -1,0 +1,153 @@
+/* 전체 레이아웃 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#imgwrap img {
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 스타일 */
+* {
+    box-sizing: border-box;  /* 모든 요소에 대해 박스 사이징 설정 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed;  /* 고정 너비 레이아웃 설정 */
+}
+
+th, td {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    color: #555;
+}
+
+/* a 태그 기본 스타일 (검정색) */
+td a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* a 태그 hover 시 스타일 (녹색) */
+td a:hover {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+#idwrap {
+	display: flex;
+	width: 100%;
+	height: 46.5px;
+}
+
+#idwrap > a {
+	width: 100%;
+	height: 100%;
+}
+
+/* 페이징 스타일 */
+#awrap {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#noContent {
+    font-size: 16px;
+    color: #888;
+}
+
+/* 이전/다음 버튼 스타일 */
+#movepaging {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    color: #555;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#movepaging:hover {
+    background-color: #ddd;
+}
+
+/* 현재 페이지 스타일 */
+#currentPaging {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #4CAF50;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#paging {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    color: #555;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#paging:hover {
+    background-color: #ddd;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+    #wrap {
+        width: 95%;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #awrap {
+        margin-top: 10px;
+    }
+
+    #paging, #currentPaging, #movepaging {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
