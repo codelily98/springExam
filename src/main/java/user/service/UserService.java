@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Component;
 import user.bean.UserDTO;
+import user.bean.UserUploadDTO;
 
 @Component
 public interface UserService {

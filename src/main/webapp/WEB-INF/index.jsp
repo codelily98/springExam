@@ -33,10 +33,13 @@
 </body>
 </html>
 
-<!-- Spring Framwork + Maven + MySQL + MyBatis(@Mapper 사용) + NCP(NaverCloud) -->
+<!-- Spring Framwork + Maven + MySQL + MyBatis(@Mapper 사용) + JSP + NCP(NaverCloud) -->
 <!-- 
     Project : SpringProject
 	src/main/java
+	    spring.conf
+	        SpringConfiguratin.java	        
+	        
 	    com.controller.SpringProject
 	        MainController.java
 	
@@ -63,7 +66,7 @@
 	    spring
 	        applicationContext.xml 
 	        db.properties
-	        mybatis-config.xml
+	        mybatis-config.xml =====> 제거
 	        
 	src/main/webapp
 	    WEB-INF

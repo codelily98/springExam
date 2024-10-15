@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: cneter;
+}
+
+/* 이미지 래퍼 스타일 */
+#imgWrap {
+    margin-bottom: 20px; /* 이미지와 폼 간의 여백 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+#imgWrap img {
+    border-radius: 50%; /* 둥근 이미지 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+}
+
+#wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    width: 100%;
+}
+
+.container {
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.image-view {
+    text-align: center;
+}
+
+.image-view img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.image-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.image-info h3 {
+    font-size: 24px;
+    color: #555;
+}
+
+.image-info p {
+    font-size: 16px;
+    color: #777;
+}
+
+#btnwrap {
+    display: flex;
+    justify-content: center; /* 버튼을 수평 중앙에 정렬 */
+    margin: 20px 0; /* 버튼 위아래 간격 */
+}
+
+#btnwrap input[type="button"] {
+    padding: 10px 20px;
+    margin: 0 10px; /* 버튼 간 간격 */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+}
+
+#updateBtn {
+    background-color: #28a745; /* 초록색 */
+}
+
+#updateBtn:hover {
+    background-color: #218838; /* 진한 초록색 */
+}
+
+#deleteBtn {
+    background-color: #dc3545; /* 빨간색 */
+}
+
+#deleteBtn:hover {
+    background-color: #c82333; /* 진한 빨간색 */
+}
+
+.back-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    width: fit-content;
+    transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* 진한 파란색 */
+}

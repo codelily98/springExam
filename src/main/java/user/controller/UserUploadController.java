@@ -4,27 +4,37 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.sound.midi.Sequence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import user.bean.UserUploadDTO;
+import user.service.ObjectStorageService;
 import user.service.UserService;
+import user.service.UserUploadService;
 
 @Controller
 @RequestMapping("user")
 public class UserUploadController {
     @Autowired
-    private UserService userService;
+    private ObjectStorageService objectStorageService;
+    @Autowired
+    private UserUploadService userUploadService;
 
+    private String bucketName = "bitcamp-9th-bucket-97";
+    
     @RequestMapping(value="uploadForm", method = RequestMethod.GET)
     public String uploadForm() {
         return "upload/uploadForm";
@@ -46,6 +56,7 @@ public class UserUploadController {
         System.out.println("실제 폴더 = " + filePath);
         
         String imageOriginalFileName;
+        String imageFileName;
         File file;
         String result = "";
         
@@ -53,6 +64,11 @@ public class UserUploadController {
         List<UserUploadDTO> imgList = new ArrayList<UserUploadDTO>();
         
         for(MultipartFile multipartFile : list) {
+            //imageFileName = UUID.randomUUID().toString();
+            
+            //Naver Cloud Plateform (Object Storage) 연결
+            imageFileName = objectStorageService.uploadFile(bucketName, "storage/", multipartFile);
+            
             imageOriginalFileName = multipartFile.getOriginalFilename();
             file = new File(filePath, imageOriginalFileName);
             
@@ -73,18 +89,88 @@ public class UserUploadController {
             UserUploadDTO imageDTO = new UserUploadDTO();
             imageDTO.setImageName(userUploadDTO.getImageName());
             imageDTO.setImageContent(userUploadDTO.getImageContent());
-            //imageDTO.setImageFileName(userUploadDTO.getImageFileName());
-            imageDTO.setImageFileName(""); //아직 UUID 안했기 떄문에 ""로 넣는다.
-            imageDTO.setImageOriginalFileName(userUploadDTO.getImageOriginalFileName());
+            imageDTO.setImageFileName(imageFileName);
+            imageDTO.setImageOriginalFileName(imageOriginalFileName);
             
             imgList.add(imageDTO);
         }
         //DB로 연동
-        
+        userUploadService.upload(imgList);
         
         return result;
     }
     
+    @RequestMapping(value = "uploadList", method = RequestMethod.GET)
+    public ModelAndView uploadList() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<UserUploadDTO> list = new ArrayList<UserUploadDTO>();
+        list = userUploadService.uploadList();        
+        modelAndView.addObject("list", list);
+        modelAndView.setViewName("upload/uploadList");
+        return modelAndView;
+    }
+    
+    @RequestMapping(value = "uploadView", method = RequestMethod.GET) 
+    public String uploadView(@RequestParam("seq") String seq, Model model) {
+        UserUploadDTO userUploadDTO = userUploadService.uploadView(Integer.parseInt(seq));
+        model.addAttribute("userUploadDTO", userUploadDTO);
+        return "upload/uploadView";
+    }
+    
+    @RequestMapping(value = "uploadUpdateForm", method = RequestMethod.GET)
+    public String uploadUpdateForm(@RequestParam("seq") String seq, Model model) {
+        UserUploadDTO userUploadDTO = userUploadService.uploadUpdateForm(Integer.parseInt(seq));
+        model.addAttribute("userUploadDTO", userUploadDTO);
+        return "upload/uploadUpdateForm";
+    }
+    
+    @RequestMapping(value="uploadUpdate", method=RequestMethod.POST, produces = "text/html; charset=UTF-8")
+    @ResponseBody
+    public String ncpUpdate(@ModelAttribute UserUploadDTO userUploadDTO,
+                    @RequestParam("multipartFile") MultipartFile multipartFile) {
+       userUploadService.imgUpdate(userUploadDTO, multipartFile);
+       
+       return "이미지 수정 완료";
+    }
+    
+    @RequestMapping(value = "deleteImage", method = RequestMethod.POST)
+    @ResponseBody
+    public int deleteImage(@RequestParam("seq[]") List<Integer> checked) {
+        int count = 0;
+        
+        List<String> imageFileNames = new ArrayList<>();
+        
+        try {
+            for(int seq : checked) {
+                List<String> imageFileName = userUploadService.deleteSelect(seq);
+                
+                imageFileNames.addAll(imageFileName);
+            }
+
+            if(!imageFileNames.isEmpty()) {
+                for (String fileName : imageFileNames) {
+                    objectStorageService.selectDeleteFile(bucketName, "storage/" + fileName);
+                }
+            } else {
+                System.out.println("imageFileNames 비워져있음(오류) : " + imageFileNames);
+            }
+            
+            for(int seq : checked) {
+                userUploadService.deleteImageDB(seq);
+                count++;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return count;
+        }        
+        return count;
+    }
+}
+
+
+
+
 //    //싱글 이미지 업로드
 //    @RequestMapping(value="upload", method = RequestMethod.POST)
 //    @ResponseBody
@@ -171,4 +257,4 @@ public class UserUploadController {
 //        
 //        return result;
 //    }
-}
+

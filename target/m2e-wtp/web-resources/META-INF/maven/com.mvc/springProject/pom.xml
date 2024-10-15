@@ -218,12 +218,12 @@
             <scope>provided</scope>
         </dependency>
         
-        <!-- NCP Setting -->
+        <!-- NCP(AWS S3) Setting -->
         <dependency>
 		    <groupId>com.amazonaws</groupId>
 		    <artifactId>aws-java-sdk-s3</artifactId>
 		    <version>1.12.578</version>
-		</dependency>		        
+		</dependency>	        
     </dependencies>
     <build>
         <plugins>

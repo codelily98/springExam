@@ -3,8 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!-- 해당 기능은 SpringConfiguration.java에서 대체한다. 
 	<typeAliases>
-		<typeAlias type="user.dao.UserDAO" alias="user"/>
-		<typeAlias type="user.bean.UserDTO" alias="userDTO"/>
+        <typeAlias type="user.bean.UserDTO" alias="userDTO"/>
+        <typeAlias type="user.bean.UserUploadDTO" alias="UserUploadDTO"/>
 	</typeAliases>
+	 -->
 </configuration>

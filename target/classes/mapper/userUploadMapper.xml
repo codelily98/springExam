@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="userSQL"> -->
+<mapper namespace="user.dao.UserUploadDAO">
+    <!-- forEach 태그의 collection 속성에 사용할 수 있는 이름은 list 또는 collection이 가능하다. -->
+	<insert id="imageUpload">
+	    INSERT INTO USERUPLOAD(imageName, imageContent, imageFileName, imageOriginalFileName) 
+	    VALUES
+	    <foreach collection="list" item="imageDTO" separator=",">
+	    (#{imageDTO.imageName}, #{imageDTO.imageContent}, #{imageDTO.imageFileName}, #{imageDTO.imageOriginalFileName})
+	    </foreach>
+	</insert>
+	
+	<select id="uploadList" resultType="userUploadDTO">
+	   SELECT * FROM USERUPLOAD ORDER BY SEQ DESC
+	</select>
+	
+	<select id="uploadView" parameterType="Integer" resultType="userUploadDTO">
+	   SELECT * FROM USERUPLOAD WHERE SEQ = #{seq}
+	</select>
+	
+	<select id="uploadUpdateForm" parameterType="Integer">
+	   SELECT * FROM USERUPLOAD WHERE SEQ = #{seq}
+	</select>
+	
+	<select id="getImageFileName">
+       SELECT ImageFileName FROM USERUPLOAD WHERE SEQ = #{seq}
+    </select>
+    
+    <update id="uploadUpdate" parameterType="userUploadDTO">
+        UPDATE USERUPLOAD SET imageName = #{imageName}, 
+                              imageContent = #{imageContent}, 
+                              imageFileName = #{imageFileName}, 
+                              imageOriginalFileName = #{imageOriginalFileName}
+                              WHERE seq = #{seq}
+    </update>
+    
+    <select id="deleteSelect" parameterType="Integer" resultType="String">
+        SELECT imageFileName FROM USERUPLOAD WHERE SEQ = #{seq}
+    </select>
+    
+    <delete id="deleteImageDB" parameterType="Integer">
+        DELETE FROM USERUPLOAD WHERE SEQ = #{seq}
+    </delete>
+</mapper>
